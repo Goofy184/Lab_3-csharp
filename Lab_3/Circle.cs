@@ -30,9 +30,6 @@ namespace Lab_3
         {
             return 2 * Math.PI * _radius;
         }
-        public double Radius { get { return _radius; } }
-        public double CenterX { get { return _centerX; } }
-        public double CenterY { get { return _centerY; } }
 
         public string Check() {
             double Eps = 0.000001;
