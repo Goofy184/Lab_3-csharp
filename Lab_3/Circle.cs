@@ -5,21 +5,46 @@ using System.Text;
 using System.Threading.Tasks;
 namespace Lab_3
 {
+    public class Point
+    {
+        private double _pointX;
+        private double _pointY;
+        public double X
+        {
+            get
+            {
+                return _pointX;
+            }
+            set
+            {
+                _pointX = value;
+            }
+        }
+        public double Y
+        {
+            get
+            {
+                return _pointY;
+            }
+            set
+            {
+                _pointY = value;
+            }
+        }
+        public Point(double pointX, double pointY)
+        {
+            _pointX = pointX;
+            _pointY = pointY;
+        }
+    }
     public class Circle
     {
         private double _radius;
-        private double _centerX;
-        private double _centerY;
-        private double _pointX;
-        private double _pointY;
-
-        public Circle(double radius, double centerX, double centerY, double pointX, double pointY)
+        private Point _centerPoint;
+        public Circle(double radius, Point centerPoint)
         {
             _radius = radius;
-            _centerX = centerX;
-            _centerY = centerY;
-            _pointX = pointX;
-            _pointY = pointY;
+            _centerPoint = centerPoint;
         }
         public double Area()
         {
@@ -31,22 +56,22 @@ namespace Lab_3
             return 2 * Math.PI * _radius;
         }
 
-        public string Check() {
+        public bool Check(Point point) {
+
             double Eps = 0.000001;
-            double length = Math.Sqrt(Math.Pow((_pointX - _centerX), 2) + Math.Pow((_pointY - _centerY), 2));
+            double length = Math.Sqrt(Math.Pow((point.X - _centerPoint.X), 2) + Math.Pow((point.Y - _centerPoint.Y), 2));
             if (Math.Abs(length - _radius) > Eps) {
                 if ((length - _radius) > Eps)
                 {
-
-                    return "Точка поза колом";
+                    return false;
                 }
                 else {
-                    return "Точка в колі";
+                    return true;
                 }
             }
             else 
             {
-                return "Точка в крузі";
+                return true;
             }
         }
     }

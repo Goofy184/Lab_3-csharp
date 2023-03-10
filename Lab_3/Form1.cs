@@ -17,14 +17,25 @@ namespace Lab_3
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            Circle c=new Circle(Convert.ToDouble(textBox5.Text), 
-                Convert.ToDouble(textBox1.Text), 
-                Convert.ToDouble(textBox2.Text),
-                Convert.ToDouble(textBox3.Text), 
-                Convert.ToDouble(textBox4.Text));
+            Point centerPoint = new Point(
+                Convert.ToDouble(CenterX.Text),
+                Convert.ToDouble(CenterY.Text)
+                );
+            Point point = new Point(
+                Convert.ToDouble(PointX.Text),
+                Convert.ToDouble(PointY.Text)
+                );
+            Circle c = new Circle(Convert.ToDouble(Radius.Text), centerPoint);
             label4.Text = "Площа кола: "+(c.Area()).ToString();
             label5.Text = "Довжина круга: "+(c.Circumference()).ToString();
-            label6.Text = c.Check();
+            if (c.Check(point))
+            {
+                label6.Text = "Точка в колі";
+            }
+            else
+            {
+                label6.Text = "Точка не в колі";
+            }
         }
     }
 }
